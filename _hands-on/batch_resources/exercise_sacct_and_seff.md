@@ -41,5 +41,5 @@ Some things to look for:
 * If you used GPU, did those jobs really use GPU? (Also shown with `seff`)
 
 Use this information to set the resource requests for similar new jobs.
-You can also look at [my.csc.fi](https://my.csc.fi] for previous (monthly)
+You can also look at [my.csc.fi](https://my.csc.fi) for previous (monthly)
 usage per project.

@@ -43,17 +43,17 @@ title: Tutorial - Parallel batch jobs
     ``` 
 4. Copy the following example into a file called `my_parallel_omp.bash` and change the `projet_XXXX` to the project you actually want to use:
 
-    ```bash
-    #!/bin/bash
-    #SBATCH --account=project_XXXX    # Choose the billing project. Has to be defined!
-    #SBATCH --time=00:00:10          # Maximum duration of the job. Max: depends of the partition. 
-    #SBATCH --partition=test        # Job queues: test, interactive, small, large, longrun, hugemem, hugemem_longrun
-    #SBATCH --ntasks=1               # Number of tasks. Max: depends on partition.
-    #SBATCH --cpus-per-task=4        # How many processors work on one task. Max: Number of CPUs per node.
+```bash
+#!/bin/bash
+#SBATCH --account=project_XXXX    # Choose the billing project. Has to be defined!
+#SBATCH --time=00:00:10          # Maximum duration of the job. Max: depends of the partition. 
+#SBATCH --partition=test        # Job queues: test, interactive, small, large, longrun, hugemem, hugemem_longrun
+#SBATCH --ntasks=1               # Number of tasks. Max: depends on partition.
+#SBATCH --cpus-per-task=4        # How many processors work on one task. Max: Number of CPUs per node.
 
-    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
-    srun hello_omp.x
-    ```
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+srun hello_omp.x
+```
 
 {:start="5"}
 5. Submit the job to the queue with the command:
@@ -104,16 +104,16 @@ title: Tutorial - Parallel batch jobs
     ``` 
 3. Copy the example below into a file called `my_parallel.bash` and change the `project_XXXX` to the project you actually want to use
 
-    ```bash
-    #!/bin/bash
-    #SBATCH --account=project_XXXX    # Choose the billing project. Has to be defined!
-    #SBATCH --time=00:00:10          # Maximum duration of the job. Max: depends of the partition. 
-    #SBATCH --partition=test        # Job queues: test, interactive, small, large, longrun, hugemem, hugemem_longrun
-    #SBATCH --nodes=2                # Number of computer nodes. Max: depends on partition.
-    #SBATCH --ntasks-per-node=4      # How many tasks one node works on. Depends on max cores and memory of a node.
+```bash
+#!/bin/bash
+#SBATCH --account=project_XXXX    # Choose the billing project. Has to be defined!
+#SBATCH --time=00:00:10          # Maximum duration of the job. Max: depends of the partition. 
+#SBATCH --partition=test        # Job queues: test, interactive, small, large, longrun, hugemem, hugemem_longrun
+#SBATCH --nodes=2                # Number of computer nodes. Max: depends on partition.
+#SBATCH --ntasks-per-node=4      # How many tasks one node works on. Depends on max cores and memory of a node.
 
-    srun hello_mpi.x
-    ```
+srun hello_mpi.x
+```
 
 {:start="4"}
 4. Submit the job to the queue with the command:

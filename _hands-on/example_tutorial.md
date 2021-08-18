@@ -68,18 +68,18 @@ title: Title that is shown in the rendered index.md
 💬 [Job-files](https://docs.csc.fi/computing/running/creating-job-scripts-puhti/#a-basic-batch-job-script) are scripts for SLURM-queueing system used in CSC supercomputers.
 
 1. Provide necessary job-files commented like this:
-    ```bash
-    #!/bin/bash
-    #SBATCH --job-name=test           # Name of the job visible in the queue.
-    #SBATCH --account=project_xxxx    # Choose the billing project. Has to be defined!
-    #SBATCH --partition=test          # Job queues: test, interactive, small, large, longrun, hugemem, hugemem_longrun
-    #SBATCH --time=00:01:00           # Maximum duration of the job. Max: depends of the partition. 
-    #SBATCH --mem=1G                  # How much RAM is reserved for job per node.
-    #SBATCH --ntasks=1                # Number of tasks. Max: depends on partition.
-    #SBATCH --cpus-per-task=1         # How many processors work on one task. Max: Number of CPUs per node.
+```bash
+#!/bin/bash
+#SBATCH --job-name=test           # Name of the job visible in the queue.
+#SBATCH --account=project_xxxx    # Choose the billing project. Has to be defined!
+#SBATCH --partition=test          # Job queues: test, interactive, small, large, longrun, hugemem, hugemem_longrun
+#SBATCH --time=00:01:00           # Maximum duration of the job. Max: depends of the partition. 
+#SBATCH --mem=1G                  # How much RAM is reserved for job per node.
+#SBATCH --ntasks=1                # Number of tasks. Max: depends on partition.
+#SBATCH --cpus-per-task=1         # How many processors work on one task. Max: Number of CPUs per node.
 
-    singularity exec tutorial.sif hello_world
-    ```
+singularity exec tutorial.sif hello_world
+```
 
 💭 For more information on batch jobs, please see [CSC Docs pages](https://docs.csc.fi/computing/running/getting-started/).
 
