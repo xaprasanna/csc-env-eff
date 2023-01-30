@@ -25,7 +25,7 @@ Unported License, [http://creativecommons.org/licenses/by-sa/4.0/](http://creati
 - Understanding quotas (available space and number of files) of different disk areas
 - Additional fast disk areas
 
-# Disk and storage overview  
+# Disk and storage overview
 
 ![](./img/disk-systems.svg){width=90%}
 
@@ -89,3 +89,13 @@ Unported License, [http://creativecommons.org/licenses/by-sa/4.0/](http://creati
     - If you're creating 10 000+ files, you should probably rethink your workflow
 - Consider using fast local disks when working with many small files
 - [Lustre best practices](https://docs.csc.fi/computing/lustre/#best-practices) and [efficient I/O in high-throughput workflows](https://docs.csc.fi/computing/running/throughput/#inputoutput-efficiency)
+
+# Research data management (RDM)
+
+- RDM means managing and organizing data during and after the active phase of a project
+  - Ensures long-term sustainability and accessibility of data and therefore re-use in future projects
+- Where to find guidance and help on RDM:
+  - [CSC self-study online RDM course](https://e-learn.csc.fi/course/view.php?id=63) (enroll using Haka)
+  - [CSC Data Management & Storage web pages](https://research.csc.fi/data-management)
+  - [Tips for data management in Docs CSC](https://docs.csc.fi/data/datasets/datamanagement/)
+  - [RDMkit](https://rdmkit.elixir-europe.org/) – RDM toolkit tailor-made for Life Sciences
