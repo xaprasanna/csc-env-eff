@@ -31,21 +31,22 @@ Unported License, [http://creativecommons.org/licenses/by-sa/4.0/](http://creati
 
 # The Allas object storage: what is it?
 
-- Allas is a storage service for all CSC computing and cloud services
-- CEPH-based object storage
-- Possible to upload data from personal laptops or organizational storage systems into Allas
+- Allas is a general purpose storage service for all CSC computing and cloud services.
+- CEPH-based object storage.
+- Possible to upload data from personal laptops or organizational storage systems into Allas.
 - Meant for data storage during project lifetime
-- Default quota is 10 TB per project
-- Clients available on Puhti and Mahti
-   - See Docs CSC for instructions on [accessing Allas from LUMI](https://docs.csc.fi/data/Allas/allas_lumi/)
+- Default quota 10 TiB/project
+- Clients available on Puhti, Mahti and Lumi
 
-# Connections to Allas
+# The Allas object storage: what is it?
 
-<div class="column">
-- Data can be moved to and from Allas directly without using Puhti or Mahti
-    - Usage through S3 and Swift APIs are supported
-- Data can be shared publicly to the Internet, which is otherwise not easily possible at CSC
-</div>
+- Data can be moved to and from Allas directly without using CSC computers.
+- For computation the data has to be typically copied to a file system in some computer.
+- Data can be shared publicly to the Internet, which is otherwise not easily possible at CSC.
+- Data can be shared (read only or read+write) with other Allas projects.
+
+# Allas as a data hub
+
 <div class="column">
 ![](img/allas.png "Allas"){width=90%}
 </div>
@@ -57,15 +58,15 @@ Unported License, [http://creativecommons.org/licenses/by-sa/4.0/](http://creati
 - **Allas is not a data management environment**
     - Tools for search, metadata, version control and access management are minimal
 - **Allas is not a back up service**
-    - Project members can delete all the data with just one command
+    - Project members can delete all the data with just one command.
+
 
 # Storing files in Allas
 
-- An object is stored on multiple servers
-    - A disk or server failure does not cause data loss
-- There is no backup, i.e. if a file is accidentally deleted, it cannot be recovered
+- An object is stored on multiple servers so a server failure does not cause data loss.
+- There is no backup, i.e. if a file is accidentally deleted, it cannot be recovered.
 - Data cannot be modified in the object storage
-    - For computation, the data has to be typically copied to a file system on some computer
+    - For modifications the data object has to be copied to a file system on some computer.
 - Some data management features are built on top of Allas
 
 # Allas buckets
@@ -74,16 +75,23 @@ Unported License, [http://creativecommons.org/licenses/by-sa/4.0/](http://creati
 - The project space can have multiple **buckets** (up to 1000)
     - Some sources refer to *buckets* as *containers*
         - Must not be confused with Docker/Apptainer containers!
-- The name of the bucket must be unique within Allas
+- The name of the bucket must be unique within Allas.
 
 # Allas objects
 
-- Data is stored as **objects** within a bucket
+- Data is stored as **objects** within a bucket.
     - Objects can contain any type of data (generally, object == file)
     - Objects have metadata that can be enriched
 - In Allas, you can have 500 000 objects per bucket
 - There is only one level of hierarchy of buckets (no buckets within buckets)
-    - There is no hierarchical directory structure, although it sometimes looks like that
+- There is no hierarchical directory structure, although it sometimes looks like that
+
+# Names in File System and in Object Storage
+
+<div class="column">
+![](img/Files_in_fs_and_in_os.png "Allas"){width=90%}
+</div>
+
 
 # Allas supports two protocols
 
@@ -99,12 +107,14 @@ Unported License, [http://creativecommons.org/licenses/by-sa/4.0/](http://creati
 
 # Allas Clients
 
-- **Puhti, Mahti, Linux servers, Mac:**
+- **Puhti, Mahti, Lumi, Linux servers, Mac:**
     - `rclone`, `swift`, `s3cmd`, `a-tools`
 - **Laptops (Windows, Mac):**
-    - [Cyberduck](https://cyberduck.io/), [FileZilla (pro)](https://filezilla-project.org/), [Pouta web interface](https://docs.csc.fi/cloud/pouta/launch-vm-from-web-gui/)
+    - [Cyberduck](https://cyberduck.io/), [FileZilla (pro)](https://filezilla-project.org/), [Pouta web interface](https://docs.csc.fi/cloud/pouta/launch-vm-from-web-gui/), [SD Connect](https://sd-connect.csc.fi)
 - **Virtual machines, small servers:**
     - In addition to the tools above, you can use FUSE-based virtual mounts
+- **APIs for different programming languages:**
+   - BOTO3(S3-python),Python-swift client, aws.s3 (R)…
 
 # Allas -- first steps
 
@@ -121,35 +131,51 @@ allas-conf
 
 # Allas -- `rclone`
 
-- Straightforward power-user tool with a wide range of features
-- Fast and efficient
-- Available for Linux, Mac and Windows
+- Straightforward power-user tool with a wide range of features.
+- Fast and efficient.
+- Available for Linux, Mac and Windows.
 - Overwrites and removes data without asking!
-- The default configuration at CSC uses `swift`-protocol, but S3 can also be used
+- The default configuration at CSC uses `swift`-protocol, but S3 can also be used.
 - Use with care: [`rclone` instructions at Docs CSC](https://docs.csc.fi/data/Allas/using_allas/rclone/)
+
+
+# Allas -- `rclone`
+
+<div class="column">
+![](img/allas-rclone.png "Allas"){width=90%}
+</div>
 
 # Allas -- `a-tools`
 
-- `rclone`-based scripts for using Allas in Puhti and Mahti
-- `a-tools` provide an easy and safe way to use Allas for occasional Allas users
-- Default bucket names are based on directories on Puhti/Mahti
+- `rclone`-based scripts for using Allas in Puhti, Mahti and Lumi.
+- `a-tools` provides an easy and safe way to use Allas for occasional Allas users.
+- Developed for the CSC supercomputers, but you can install the tools in other Linux and Mac machines as well.
+- Default bucket names are based on directories on Puhti/Mahti/Lumi.
 - Unlike `rclone`, `a-tools` does not overwrite or remove data without asking!
-- Developed for the CSC supercomputers, but you can install the tools in other Linux and Mac machines as well
-- Automatic packing (compression can be enabled as well if needed)
+- Automatic packing (compression can be enabled as well if needed).
 - [a-commands instructions at Docs CSC](https://docs.csc.fi/data/Allas/using_allas/a_commands/)
+
+# Allas -- `rclone`
+
+<div class="column">
+![](img/allas-p-put.png "Allas"){width=90%}
+</div>
+
 
 # `a-put`/`a-get`: pros and cons
 
 <div class="column">
-➕ Saving data as a tar package preserves time stamps, access settings, and internal links of the directory  
-➕ Optional `zstdmt` compression reduces size  
-➕ The default bucket name and the metadata reflect the directory structure on Puhti/Mahti  
-➕ Checks to prevent overwriting data accidentally
+➕ Saving data as a tar package preserves time stamps, access settings, and internal links of the directory.  
+➕ The default bucket name and the metadata reflect the directory structure on Puhti/Mahti/Lumi. 
+➕ Checks to prevent overwriting data accidentally.
+➕ crypt4ch encryption available.
 </div>
 <div class="column">
-➖ Usage of objects created by `a-put` can be complicated when other object storage tools are used  
-➖ Usage from Windows is problematic  
-➖ Each object has an additional `_ameta` object
+➖ Usage of objects created by `a-put` can be complicated when other object storage tools are used. 
+➖ Usage from Windows is problematic.  
+➖ Each object has an additional `_ameta` object.
+➖ Packing and encryption requires temporary disk space. 
+
 </div>
 
 # Issues with Allas
@@ -169,6 +195,27 @@ allas-conf
 - Who can use the data: projects and access rights?
 - What will happen to my data later on?
 - How to keep track of all the data I have in Allas?
+
+# Using Allas to manage research data
+
+<div class="column">
+![](img/allas-projects.png "Allas"){width=90%}
+</div>
+
+# Using Allas to manage research data
+
+<div class="column">
+![](img/allas-nextflow.png "Allas"){width=90%}
+</div>
+
+
+# Using Allas in service production
+
+- Allas is designed and tuned for research use: capacity is more important than availability.
+- No service duplication: unscheduled service breaks can occurr.
+- Technical data loss is highly unlikely but not impossible.
+- Organisational data loss: data from closed projects will be deleted after 90 days
+
 
 # Fairdata services
 
